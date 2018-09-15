@@ -13,6 +13,13 @@
     animation-fill-mode: forwards;
 }
 
+.fadein {
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-direction: reverse;
+}
+
 body {
   display: block;
   margin: 0px;
@@ -25,7 +32,7 @@ body {
 </style>
 </head>
 <body onload="wholeSet()">
-<div class="stacked" id="overlay"/>
+<div class="stacked" id="backdrop"/>
 <div class="stacked" id="content"/>
 </body>
 </html>
