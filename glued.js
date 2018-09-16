@@ -31,6 +31,8 @@ class Video {
         var c = this.container;
         v.src = this.src;
         v.autoplay = true;
+        v.width = 1920;
+        v.height = 1080;
         v.classList.add('fadein');
         v.addEventListener("animationend", _ => v.classList.remove('fadein'), {once: true});
         c.appendChild(v);
@@ -59,7 +61,9 @@ function wholeSet() {
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
     var preMexLogo = new StaticImage('forayslogo.svg', backdrop, mexico);
     var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, preMexLogo);
-    coil.show(noop);
+    var preCoilLogo = new StaticImage('forayslogo.svg', backdrop, coil);
+    var answer = new Video('Answer.ogg', content, preCoilLogo);
+    answer.show(noop);
 }
 
 document.onload = wholeSet;
