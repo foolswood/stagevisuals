@@ -70,9 +70,9 @@
        preserveAspectRatio="none"
        height="352.77777"
        width="1001.8889">
-       <animate id="skyslide0" attributeName="x" attributeType="XML" from="0" to="1001" dur="17s" repeatCount="indefinite"/>
-       <animate id="skybob0" attributeName="y" attributeType="XML" from="0" to="-50" dur="11s" begin="0s; skybob1.end"/>
-       <animate id="skybob1" attributeName="y" attributeType="XML" from="-50" to="0" dur="19s" begin="skybob0.end"/>
+       <animate id="skyslide0" attributeName="x" attributeType="XML" from="0" to="1001" dur="57s" repeatCount="indefinite"/>
+       <animate id="skybob0" attributeName="y" attributeType="XML" from="0" to="-50" dur="33s" begin="0s; skybob1.end"/>
+       <animate id="skybob1" attributeName="y" attributeType="XML" from="-50" to="0" dur="39s" begin="skybob0.end"/>
     </image>
     <image
        xlink:href="skytexture.png"
@@ -82,9 +82,9 @@
        preserveAspectRatio="none"
        height="352.77777"
        width="1001.8889">
-       <animate id="skyslide1" attributeName="x" attributeType="XML" to="0" from="-1001" dur="17s" repeatCount="indefinite"/>
-       <animate id="skybob2" attributeName="y" attributeType="XML" from="0" to="-50" dur="11s" begin="0s; skybob3.end"/>
-       <animate id="skybob3" attributeName="y" attributeType="XML" from="-50" to="0" dur="19s" begin="skybob2.end"/>
+       <animate id="skyslide1" attributeName="x" attributeType="XML" to="0" from="-1001" dur="57s" repeatCount="indefinite"/>
+       <animate id="skybob2" attributeName="y" attributeType="XML" from="0" to="-50" dur="33s" begin="0s; skybob3.end"/>
+       <animate id="skybob3" attributeName="y" attributeType="XML" from="-50" to="0" dur="39s" begin="skybob2.end"/>
     </image>
     <rect
        y="11.249939"
@@ -92,19 +92,28 @@
        height="283.24127"
        width="508"
        id="LightningOverlay"
-       style="opacity:0.57999998;fill:url(#radialGradient1368);fill-opacity:1;stroke:none;stroke-width:1.47165287;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       opacity="0"
+       style="fill:url(#radialGradient1368);stroke:none;stroke-width:1.47165287;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+       <animate id="skyflash" attributeName="opacity" attributeType="XML" from="0.5" to="0" dur="0.6" begin="1s; 1.5s; 3s"/>
+    </rect>
     <path
        transform="matrix(1.7473713,0,0,1.5448381,-23.110316,-38.604063)"
        id="LightningBolt"
        d="m 87.793954,31.56154 h 8.81988 l -8.28535,36.61592 8.01809,35.01231 25.820486,16.51977 -26.355016,-14.38161 -17.90706,20.04521 3.47449,26.72696 11.1554,7.18941 -11.68994,-5.31852 -16.59578,18.05788 14.99216,-19.12696 -4.2763,-26.45969 -16.7222,5.96378 16.7222,-8.36921 17.10526,-20.84702 -9.88898,-30.20145 -31.05795,12.68072 29.72159,-16.95704 z"
-       style="fill:#e6eff1;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1493)" />
+       opacity="0"
+       style="fill:#e6eff1;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1493)">
+       <animate id="skybolt" attributeName="opacity" attributeType="XML" from="1" to="0" dur="0.06" begin="1s; 3s"/>
+    </path>
     <rect
        y="11.249939"
        x="0"
        height="285.75"
        width="508.90628"
        id="OrangeOverlay"
-       style="opacity:0.57999998;fill:#763e0c;fill-opacity:1;stroke:none;stroke-width:6.98799992;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.51282055" />
+       opacity="0.6"
+       style="fill:#763e0c;stroke:none;stroke-width:6.98799992;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.51282055">
+       <animate id="orangify" attributeName="opacity" attributeType="XML" from="0" to="0.6" dur="20" begin="0s"/>
+    </rect>
     <path
        id="Hills"
        d="m 0,195.43721 c 2.1911464,-0.1428 7.4563866,0.98455 10.5351,-0.30236 2.187419,1.83847 4.072292,4.22752 5.392793,6.93288 -0.798793,1.7909 -1.721779,1.99706 -1.263698,4.20692 2.950811,1.60843 7.91718,3.16551 13.865769,3.82675 4.836367,-2.60084 7.029088,1.7379 10.289497,3.27394 4.226951,-1.13816 7.962258,-2.94675 14.498844,-0.93541 12.09788,3.89786 24.134792,8.10057 36.01323,13.09571 4.866255,3.94351 9.435318,5.3734 15.897075,8.7186 2.47219,4.19557 4.8556,8.38558 10.76207,12.7958 -4.43999,3.67034 9.2065,6.55428 14.03114,9.8218 9.30372,2.5538 17.50477,-0.74023 24.26875,-3.05427 17.77264,3.73139 26.21655,0.50092 41.3752,-9.76749 2.13512,-0.94584 2.91993,-0.93573 4.97696,2.58656 1.61584,-4.71835 5.12601,-1.70452 7.34628,-7.28953 4.35282,-1.46732 9.69408,-0.62825 14.63826,-0.71574 2.62384,-3.76814 3.40028,-4.43357 9.25084,-5.2143 3.91048,-0.52183 6.55414,-7.50701 9.45733,-7.41372 3.97057,0.25444 5.58746,3.08592 6.18634,6.51948 7.44788,-0.64394 14.89575,0.35115 22.34363,1.89919 2.84118,-5.46352 7.43477,-8.10705 16.66957,-8.94068 2.24854,-0.32997 4.20145,3.23594 7.12141,5.51693 1.45511,1.13667 3.04489,-0.26033 5.23262,1.79853 0.8941,1.29833 0.15155,2.5816 -0.93541,5.64083 8.89186,0.53317 17.99333,-1.23979 27.10095,-3.0802 -0.69499,-11.66606 14.61987,-20.61077 18.70816,-24.32062 1.93597,-1.5381 8.19153,-0.70032 10.58697,2.9432 3.96057,2.69539 6.78582,0.4326 9.92621,-2.44296 0,0 7.30758,-1.33873 12.81265,-3.36612 7.78557,-2.86725 12.97159,-8.70135 15.72882,-8.03074 10.7676,1.52919 16.64702,10.5619 27.18117,15.10595 3.72155,-6.80605 11.85525,3.84869 23.85291,5.14476 3.36109,-2.08937 7.477,-2.92062 12.16032,-2.80623 1.66732,-8.75265 6.13737,-15.05289 13.09573,-19.17588 -0.73559,-3.50083 -3.02195,-6.26734 0.55037,-10.17844 9.19257,-4.96739 17.54338,-8.588 25.64109,-11.80369 6.44131,3.16592 7.00544,-7.50522 13.56341,-10.75718 l 0.0439,131.33046 H 3.4998705e-5 Z"
@@ -112,10 +121,14 @@
     <path
        id="HillsHighlight"
        d="m 0,197.02472 c 2.1874331,-0.14255 7.4437503,0.98288 10.517246,-0.30184 2.183712,1.83535 4.065391,4.22035 5.383654,6.92113 -0.797439,1.78786 -1.718861,1.99367 -1.261556,4.19978 2.94581,1.60571 7.903762,3.16015 13.842271,3.82027 4.82817,-2.59643 7.017175,1.73496 10.272059,3.26839 4.219788,-1.13623 7.948747,-2.94175 14.474272,-0.93382 12.077378,3.89125 24.093891,8.08684 35.952199,13.07351 4.858008,3.93684 9.419311,5.3643 15.870115,8.70383 2.46802,4.18846 4.84737,8.37137 10.74383,12.77412 -4.43246,3.66411 9.19091,6.54317 14.00738,9.80514 9.28796,2.54948 17.47511,-0.73896 24.22762,-3.04909 17.74252,3.72507 26.17212,0.50007 41.30509,-9.75093 2.13149,-0.94424 2.91497,-0.93414 4.96852,2.58217 1.6131,-4.71035 5.11733,-1.70163 7.33383,-7.27717 4.34545,-1.46484 9.67765,-0.62718 14.61345,-0.71453 2.61938,-3.76175 3.39451,-4.42605 9.23515,-5.20546 3.90387,-0.52095 6.54303,-7.49429 9.4413,-7.40116 3.96384,0.25401 5.57799,3.08069 6.17586,6.50844 7.43526,-0.64285 14.8705,0.35054 22.30576,1.89597 2.83636,-5.45427 7.42219,-8.09331 16.64134,-8.92553 2.24473,-0.32941 4.19433,3.23046 7.10934,5.50758 1.45264,1.13474 3.03973,-0.2599 5.22375,1.79548 0.89258,1.29613 0.15129,2.57722 -0.93382,5.63127 8.87679,0.53227 17.96283,-1.23769 27.05502,-3.07498 -0.69381,-11.64629 14.59509,-20.57584 18.67647,-24.2794 1.93269,-1.5355 8.17765,-0.69914 10.56903,2.93821 3.95386,2.69082 6.77432,0.43187 9.90938,-2.43882 0,0 7.29521,-1.33647 12.79095,-3.36042 7.77237,-2.86239 12.94959,-8.6866 15.70216,-8.01712 10.74935,1.52659 16.6188,10.54399 27.13509,15.08035 3.71524,-6.79453 11.83516,3.84216 23.81251,5.13603 3.35538,-2.08583 7.46431,-2.91567 12.1397,-2.80147 1.6645,-8.73782 6.12698,-15.02738 13.07352,-19.14338 -0.73432,-3.4949 -3.01682,-6.25672 0.54944,-10.1612 9.17699,-4.95896 17.51367,-8.57344 25.59763,-11.78368 6.4304,3.16055 6.99358,-7.4925 13.54043,-10.73895"
-       style="fill:none;fill-opacity:1;stroke:#a6eec6;stroke-width:6.98799992;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.51282055" />
+       style="fill:none;fill-opacity:1;stroke:#a6eec6;stroke-width:6.98799992;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.282055" />
     <path
        id="Bird"
        d="m 331.27649,148.89286 c 11.05002,9.55067 23.57007,18.57633 29.93419,29.80054 -0.98493,-9.32638 -1.76132,-18.58325 -4.81085,-28.59783 8.41444,-3.72788 13.05341,-11.77058 19.2434,-18.04069 -13.56224,1.72153 -28.70364,5.65387 -40.62496,5.07812 l -4.27632,-3.20724 c 1.05031,-5.25745 0.54261,-9.88782 -1.33634,-15.50163 4.84213,-5.8313 8.07513,-12.789 9.35443,-21.114288 4.51378,-6.717 5.27659,-9.80827 4.27631,-15.7689 -23.65929,20.838758 -28.43523,19.713728 -30.06782,22.717908 -1.64031,3.01837 3.32127,14.21059 0.13363,23.51972 l -2.93996,0.53454 c -3.07756,-2.11834 -5.3275,-5.56849 -13.89802,2.93996 l -5.34539,-0.53454 5.07812,4.27631 c 2.43274,2.31231 4.20044,5.15664 8.28536,6.1472 -1.7123,5.41183 -11.50882,8.22793 -10.69078,12.56167 5.37262,22.78524 9.31205,31.07746 23.26727,41.75611 0.22408,-5.31596 0.74654,-7.12021 -1.61844,-14.49462 1.27235,-7.32661 -3.57526,-15.94798 -1.87089,-22.71791 1.06551,-1.8517 7.98776,-1.87573 11.49259,-8.28535 1.6984,-0.0632 3.65375,-0.29767 6.41447,-1.06908 z"
-       style="fill:#1a1a1a;fill-opacity:0.3882353;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       opacity="0.6"
+       style="fill:#1a1a1a;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1">
+       <animate id="nobird" attributeName="opacity" attributeType="XML" from="0" to="0" dur="7s" begin="0s"/>
+       <animate id="birdoverlay" attributeName="opacity" attributeType="XML" from="0" to="0.6" dur="10s" begin="nobird.end"/>
+    </path>
   </g>
 </svg>
