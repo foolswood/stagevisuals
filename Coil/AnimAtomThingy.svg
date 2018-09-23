@@ -18,11 +18,11 @@
       <stop
          id="stop1334"
          offset="0"
-         style="stop-color:#c9ba8f;stop-opacity:1" />
+         style="stop-color:#cbba8f;stop-opacity:1" />
       <stop
          id="stop1336"
          offset="1"
-         style="stop-color:#6f6a59;stop-opacity:1" />
+         style="stop-color:#716a59;stop-opacity:1" />
     </linearGradient>
     <linearGradient
        id="linearGradient1196">
@@ -115,8 +115,8 @@
        id="path959"
        d="m 219.39706,211.79532 c -22.5288,-13.25399 -3.42494,-35.84993 -3.42494,-57.7243 0,-21.87437 -18.83048,-44.74492 3.42494,-57.720548 22.25543,-12.975631 34.50514,13.996348 53.47018,24.945818 18.96504,10.94948 46.63679,6.60562 46.62029,32.84143 -0.0165,26.23581 -27.67961,21.81448 -46.64465,32.73939 -18.96505,10.92491 -30.91701,38.1722 -53.44582,24.91821 z"
        style="fill:none;stroke-width:3.13337493;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-       <animate id="swirl0col0" attributeName="stroke" attributeType="XML" from="#3142af" to="#31af42" dur="1.87s" begin="0s; swirl0col1.end"/>
-       <animate id="swirl0col1" attributeName="stroke" attributeType="XML" to="#3142af" from="#31af42" dur="1.87s" begin="swirl0col0.end"/>
+       <animate id="swirl0col0" attributeName="stroke" attributeType="XML" from="#3142af" to="#318a42" dur="1.87s" begin="0s; swirl0col1.end"/>
+       <animate id="swirl0col1" attributeName="stroke" attributeType="XML" to="#3142af" from="#318a42" dur="1.87s" begin="swirl0col0.end"/>
        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 254 154" to="360 254 154" dur="10s" repeatCount="indefinite"/>
     </path>
     <path
@@ -127,7 +127,7 @@
        <animate id="swirl1col1" attributeName="stroke" attributeType="XML" from="#3142af" to="#afaf55" dur="1.87s" begin="swirl0col0.end"/>
        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="361 254 154" to="0 254 154" dur="10s" repeatCount="indefinite"/>
     </path>
-    <g transform="scale(3.3) translate(-177, -110)" stroke-opacity="0.3" stroke="#6172af">
+    <g transform="scale(3.3) translate(-177, -110)" stroke-opacity="0.2" stroke="#2132af">
         <path
            id="path959"
            d="m 219.39706,211.79532 c -22.5288,-13.25399 -3.42494,-35.84993 -3.42494,-57.7243 0,-21.87437 -18.83048,-44.74492 3.42494,-57.720548 22.25543,-12.975631 34.50514,13.996348 53.47018,24.945818 18.96504,10.94948 46.63679,6.60562 46.62029,32.84143 -0.0165,26.23581 -27.67961,21.81448 -46.64465,32.73939 -18.96505,10.92491 -30.91701,38.1722 -53.44582,24.91821 z"
