@@ -94,7 +94,7 @@
        id="LightningOverlay"
        opacity="0"
        style="fill:url(#radialGradient1368);stroke:none;stroke-width:1.47165287;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-       <animate id="skyflash" attributeName="opacity" attributeType="XML" from="0.5" to="0" dur="0.6" begin="1s; 1.5s; 3s"/>
+       <animate id="skyflash" attributeName="opacity" attributeType="XML" from="0.5" to="0" dur="0.6" begin="33.5s; 34s; 35s"/>
     </rect>
     <path
        transform="matrix(1.7473713,0,0,1.5448381,-23.110316,-38.604063)"
@@ -102,7 +102,7 @@
        d="m 87.793954,31.56154 h 8.81988 l -8.28535,36.61592 8.01809,35.01231 25.820486,16.51977 -26.355016,-14.38161 -17.90706,20.04521 3.47449,26.72696 11.1554,7.18941 -11.68994,-5.31852 -16.59578,18.05788 14.99216,-19.12696 -4.2763,-26.45969 -16.7222,5.96378 16.7222,-8.36921 17.10526,-20.84702 -9.88898,-30.20145 -31.05795,12.68072 29.72159,-16.95704 z"
        opacity="0"
        style="fill:#e6eff1;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1493)">
-       <animate id="skybolt" attributeName="opacity" attributeType="XML" from="1" to="0" dur="0.06" begin="1s; 3s"/>
+       <animate id="skybolt" attributeName="opacity" attributeType="XML" from="1" to="0" dur="0.06" begin="33.5s; 34s; 35s"/>
     </path>
     <rect
        y="11.249939"
@@ -112,7 +112,8 @@
        id="OrangeOverlay"
        opacity="0.6"
        style="fill:#763e0c;stroke:none;stroke-width:6.98799992;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.51282055">
-       <animate id="orangify" attributeName="opacity" attributeType="XML" from="0" to="0.6" dur="20" begin="0s"/>
+       <animate id="noverlay" attributeName="opacity" attributeType="XML" from="0" to="0" dur="180s" begin="0s"/>
+       <animate id="orangify" attributeName="opacity" attributeType="XML" from="0" to="0.6" dur="30" begin="noverlay.end"/>
     </rect>
     <path
        id="Hills"
@@ -127,8 +128,8 @@
        d="m 331.27649,148.89286 c 11.05002,9.55067 23.57007,18.57633 29.93419,29.80054 -0.98493,-9.32638 -1.76132,-18.58325 -4.81085,-28.59783 8.41444,-3.72788 13.05341,-11.77058 19.2434,-18.04069 -13.56224,1.72153 -28.70364,5.65387 -40.62496,5.07812 l -4.27632,-3.20724 c 1.05031,-5.25745 0.54261,-9.88782 -1.33634,-15.50163 4.84213,-5.8313 8.07513,-12.789 9.35443,-21.114288 4.51378,-6.717 5.27659,-9.80827 4.27631,-15.7689 -23.65929,20.838758 -28.43523,19.713728 -30.06782,22.717908 -1.64031,3.01837 3.32127,14.21059 0.13363,23.51972 l -2.93996,0.53454 c -3.07756,-2.11834 -5.3275,-5.56849 -13.89802,2.93996 l -5.34539,-0.53454 5.07812,4.27631 c 2.43274,2.31231 4.20044,5.15664 8.28536,6.1472 -1.7123,5.41183 -11.50882,8.22793 -10.69078,12.56167 5.37262,22.78524 9.31205,31.07746 23.26727,41.75611 0.22408,-5.31596 0.74654,-7.12021 -1.61844,-14.49462 1.27235,-7.32661 -3.57526,-15.94798 -1.87089,-22.71791 1.06551,-1.8517 7.98776,-1.87573 11.49259,-8.28535 1.6984,-0.0632 3.65375,-0.29767 6.41447,-1.06908 z"
        opacity="0.6"
        style="fill:#1a1a1a;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1">
-       <animate id="nobird" attributeName="opacity" attributeType="XML" from="0" to="0" dur="7s" begin="0s"/>
-       <animate id="birdoverlay" attributeName="opacity" attributeType="XML" from="0" to="0.6" dur="10s" begin="nobird.end"/>
+       <animate id="nobird" attributeName="opacity" attributeType="XML" from="0" to="0" dur="195s" begin="0s"/>
+       <animate id="birdoverlay" attributeName="opacity" attributeType="XML" from="0" to="0.6" dur="15s" begin="nobird.end"/>
     </path>
   </g>
 </svg>
