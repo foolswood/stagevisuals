@@ -39,12 +39,20 @@
        height="852.59845"
        width="1918.1399"
        id="rect1728-0"
-       style="opacity:1;fill:#00ffff;fill-opacity:0.41568627;stroke:none;stroke-width:1.83419323;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="opacity:1;fill:#00a0a0;fill-opacity:0.41568627;stroke:none;stroke-width:1.83419323;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        id="plot"
+       transform="translate(-2000)"
        d="m -2808.2241,616.91363 109.1638,-196.07578 27.2068,101.53716 244.1597,-244.1597 118.7402,443.14448 182.5778,-105.41134 118.1677,118.1677 238.4209,-238.42083 116.5055,201.7935 117.5986,-438.88404 229.4056,397.34217 43.118,-160.91859 138.1688,515.65304 109.8321,-409.89881 176.26495,-176.26498 75.77676,282.80269 190.79597,-330.46832 301.13542,301.13542 97.01573,-362.06766 81.938512,141.92166 116.154143,-201.18487 33.3916,124.61915 148.069095,-256.46325 174.191,301.7076 175.6455,-175.64547 357.9578,357.95785 174.46112,-302.17546 149.8069,259.47317 218.6864,-126.25865 124.355,215.38909 144.128,-144.12805 85.3923,318.6882 122.3505,-212.90708"
        style="fill:none;stroke:#1ffff2;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
-       <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-2000" to="4800" dur="37s" repeatCount="indefinite"/>
+       <animateTransform id="plotslide" attributeName="transform" attributeType="XML" type="translate" from="-2000" to="4650" dur="37s" begin="0s; plotslide.end + 15.75s"/>
+    </path>
+    <path
+       id="plot2"
+       transform="translate(-2000)"
+       d="m -2808.2241,616.91363 109.1638,-196.07578 27.2068,101.53716 244.1597,-244.1597 118.7402,443.14448 182.5778,-105.41134 118.1677,118.1677 238.4209,-238.42083 116.5055,201.7935 117.5986,-438.88404 229.4056,397.34217 43.118,-160.91859 138.1688,515.65304 109.8321,-409.89881 176.26495,-176.26498 75.77676,282.80269 190.79597,-330.46832 301.13542,301.13542 97.01573,-362.06766 81.938512,141.92166 116.154143,-201.18487 33.3916,124.61915 148.069095,-256.46325 174.191,301.7076 175.6455,-175.64547 357.9578,357.95785 174.46112,-302.17546 149.8069,259.47317 218.6864,-126.25865 124.355,215.38909 144.128,-144.12805 85.3923,318.6882 122.3505,-212.90708"
+       style="fill:none;stroke:#1ffff2;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+       <animateTransform id="plotslide1" attributeName="transform" attributeType="XML" type="translate" from="-2000" to="4650" dur="37s" begin="26.38s; plotslide1.end + 15.75s"/>
     </path>
     <path
        id="rect1656-1"
