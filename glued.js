@@ -1,8 +1,13 @@
 class StaticImage {
-    constructor(src, container, next) {
+    constructor(src, container, next, delay) {
         this.src = src;
         this.container = container;
         this.next = next;
+        if (delay === undefined) {
+            this.delay = 0;
+        } else {
+            this.delay = delay;
+        }
     }
 
     show(ready) {
@@ -11,10 +16,15 @@ class StaticImage {
         i.src = this.src;
         c.appendChild(i);
         ready();
-        var cb = _ => this.next.show(function () {
+        var endCb = _ => this.next.show(function () {
             i.classList.add('fadeout');
             i.addEventListener("animationend", _ => c.removeChild(i));
         });
+        if (this.delay) {
+            var cb = _ => window.setTimeout(endCb, this.delay);
+        } else {
+            var cb = endCb;
+        }
         window.addEventListener("keypress", cb, {once: true});
     }
 }
@@ -45,6 +55,27 @@ class Video {
     }
 }
 
+class SvgAnim {
+    constructor(src, container, next) {
+        this.src = src;
+        this.container = container;
+        this.next = next;
+    }
+
+    show(ready) {
+        var i = document.createElement('object');
+        var c = this.container;
+        i.data = this.src;
+        c.appendChild(i);
+        ready();
+        var cb = _ => this.next.show(function () {
+            i.classList.add('fadeout');
+            i.addEventListener("animationend", _ => c.removeChild(i));
+        });
+        window.addEventListener("keypress", cb, {once: true});
+    }
+}
+
 class EndStop {
     show(ready) {
     }
@@ -62,8 +93,13 @@ function wholeSet() {
     var preMexLogo = new StaticImage('forayslogo.svg', backdrop, mexico);
     var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, preMexLogo);
     var preCoilLogo = new StaticImage('forayslogo.svg', backdrop, coil);
-    var answer = new Video('Answer.ogg', content, preCoilLogo);
-    answer.show(noop);
+    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preCoilLogo);
+    var preClarity = new StaticImage('blackout.svg', backdrop, clarity);
+    var answer = new Video('Answer.ogg', content, preClarity);
+    var preAnswer = new StaticImage('epcover.png', backdrop, answer, 2466);
+    var churn = new Video('Churn.mp4', content, preAnswer);
+    var preChurn = new StaticImage('forayslogo.svg', backdrop, churn);
+    preChurn.show(noop);
 }
 
 document.onload = wholeSet;
