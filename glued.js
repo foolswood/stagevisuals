@@ -54,11 +54,13 @@ class Video {
         v.loop = this.loop;
         v.width = 1920;
         v.height = 1080;
-        v.classList.add('fadein');
-        v.addEventListener("animationend", _ => v.classList.remove('fadein'), {once: true});
+        var fade = this.fade;
+        if (this.fade) {
+            v.classList.add('fadein');
+            v.addEventListener("animationend", _ => v.classList.remove('fadein'), {once: true});
+        }
         c.appendChild(v);
         ready();
-        var fade = this.fade;
         var cb = _ => this.next.show(function () {
             v.removeEventListener("ended", cb, {once: true});
             window.removeEventListener("keypress", cb);
@@ -86,7 +88,11 @@ class SvgAnim {
         var c = this.container;
         i.data = this.src;
         c.appendChild(i);
-        ready();
+        i.classList.add('fadein');
+        i.addEventListener("animationend", function() {
+            i.classList.remove('fadein');
+            ready();
+        }, {once: true});
         var cb = _ => this.next.show(function () {
             i.classList.add('fadeout');
             i.addEventListener("animationend", _ => c.removeChild(i));
@@ -99,6 +105,20 @@ class EndStop {
     show(ready) {
     }
 }
+
+class Placeholder {
+    constructor(src, container, next) {
+        this.next = next;
+    }
+
+    show(ready) {
+        ready();
+        var cb = _ => this.next.show(function () {
+        });
+        window.addEventListener("keypress", cb, {once: true});
+    }
+}
+
 
 function noop() {
 }
@@ -123,8 +143,17 @@ function wholeSet() {
     // Burn
     // Olive
     // NWO
-    var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, preChurn);
-    var preEv = new Video('EV/rainscenes.ogg', content, evDaydream, true, false);
+    var preNwo = new StaticImage('blackout.svg', backdrop, preChurn);
+
+    var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, false, false);
+    var evOutro1 = new Video('EV/sundown_early.mp4', content, evOutro2, false, false);
+    var evChorus3 = new Video('EV/sunrise.ogg', backdrop, evOutro1, false, false);
+    var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', content, evChorus3);
+    var evChorus2 = new Video('EV/flickery_sundown.mp4', backdrop, evDaydream, false, false);
+    var evVerse2 = new Placeholder('Ivan futurescape', backdrop, evChorus2);
+    var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2);
+    var evVerse1 = new Placeholder('Ivan logo', backdrop, evChorus1);
+    var preEv = new Video('EV/rainscenes.ogg', content, evVerse1, true, false);
     preEv.show(noop);
 }
 
