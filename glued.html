@@ -9,15 +9,17 @@
 
 .fadeout {
     animation-name: fade;
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
+    animation-iteration-count: 1;
 }
 
 .fadein {
     animation-name: fade;
     animation-duration: 1s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: reverse;
     animation-direction: reverse;
+    animation-iteration-count: 1;
 }
 
 body {
@@ -33,7 +35,9 @@ body {
 </style>
 </head>
 <body onload="wholeSet()">
-<div class="stacked" id="backdrop"/>
-<div class="stacked" id="content"/>
+<div class="stacked" id="backdrop">
+</div>
+<div class="stacked" id="content">
+</div>
 </body>
 </html>
