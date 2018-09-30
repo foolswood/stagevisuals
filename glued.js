@@ -112,6 +112,27 @@ class SvgAnim extends Layer {
     }
 }
 
+class Olive extends Layer {
+    createNode() {
+        var i = document.createElement('img');
+        var sources = [
+            'Olive/00.jpg',
+            'Olive/01.jpg'
+        ];
+        var counter = 0;
+        var nextSource = function() {
+            i.src = sources[counter++ % sources.length];
+        }
+        i.intervalTimer = window.setInterval(nextSource, 250);
+        return i;
+    }
+
+    removeEndTriggers(i, cb) {
+        super.removeEndTriggers(i, cb);
+        clearInterval(i.intervalTimer);
+    }
+}
+
 class EndStop {
     show(ready) {
     }
@@ -157,9 +178,9 @@ function wholeSet() {
     var churn = new Video('Churn.mp4', content, preAnswer);
     var preChurn = new StaticImage('forayslogo.svg', backdrop, churn);
     // Burn
-    // Olive
+    var olive = new Olive(content, preChurn);
     // NWO
-    var preNwo = new StaticImage('blackout.svg', backdrop, preChurn, {fadein: false});
+    var preNwo = new StaticImage('blackout.svg', backdrop, olive, {fadein: false});
 
     var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false});
     var evOutro1 = new Video('EV/sundown_early.mp4', backdrop, evOutro2, {fadein: false, fadeout: false});
