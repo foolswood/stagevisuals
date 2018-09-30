@@ -1,135 +1,114 @@
-class StaticImage {
-    constructor(src, container, next, delay) {
-        this.src = src;
-        this.container = container;
-        this.next = next;
-        if (delay === undefined) {
-            this.delay = 0;
-        } else {
-            this.delay = delay;
-        }
-    }
-
-    show(ready) {
-        var i = document.createElement('img');
-        var c = this.container;
-        i.src = this.src;
-        c.appendChild(i);
-        ready();
-        var endCb = _ => this.next.show(function () {
-            i.classList.add('fadeout');
-            i.addEventListener("animationend", _ => c.removeChild(i));
-        });
-        if (this.delay) {
-            var cb = _ => window.setTimeout(endCb, this.delay);
-        } else {
-            var cb = endCb;
-        }
-        window.addEventListener("keypress", cb, {once: true});
-    }
-}
-
-class Video {
-    constructor(src, container, next, opts) {
-        this.src = src;
+class Layer {
+    constructor(container, next, opts) {
         this.container = container;
         this.next = next;
         if (opts === undefined) {
-            opts = {};
-        }
-        if (opts.loop === undefined) {
-            this.loop = false;
+            this.opts = {};
         } else {
-            this.loop = opts.loop;
+            this.opts = opts;
         }
-        if (opts.fadein === undefined) {
-            this.fadein = true;
+    }
+
+    getOpt(opt_name, fallback) {
+        if (this.opts[opt_name] === undefined) {
+            return fallback;
         } else {
-            this.fadein = opts.fadein;
-        }
-        if (opts.fadeout === undefined) {
-            this.fadeout = true;
-        } else {
-            this.fadeout = opts.fadeout;
+            return this.opts[opt_name];
         }
     }
 
     show(ready) {
-        var v = document.createElement('video');
+        var e = this.createNode();
         var c = this.container;
-        v.src = this.src;
-        v.autoplay = true;
-        v.loop = this.loop;
-        v.width = 1920;
-        v.height = 1080;
-        if (this.fadein) {
-            v.classList.add('fadein');
-            c.appendChild(v);
-            v.addEventListener(
+        if (this.getOpt('fadein', true)) {
+            e.classList.add('fadein');
+            c.appendChild(e);
+            e.addEventListener(
                 "animationend",
                 function () {
-                    v.classList.remove('fadein');
+                    e.classList.remove('fadein');
                     ready();
                 },
                 {once: true});
         } else {
-            c.appendChild(v);
+            c.appendChild(e);
             ready();
         }
-        var fadeout = this.fadeout;
-        var cb = _ => this.next.show(function () {
-            v.removeEventListener("ended", cb, {once: true});
-            window.removeEventListener("keypress", cb, {once: true});
+        var fadeout = this.getOpt('fadeout', true);
+        var ret = this.removeEndTriggers;
+        var endCb = _ => this.next.show(function () {
+            ret(e, cb);
             if (fadeout) {
-                v.classList.add('fadeout');
-                v.addEventListener("animationend", _ => c.removeChild(v));
+                e.classList.add('fadeout');
+                e.addEventListener("animationend", _ => c.removeChild(e));
             } else {
-                c.removeChild(v);
+                c.removeChild(e);
             }
         });
-        v.addEventListener("ended", cb, {once: true});
-        window.addEventListener("keypress", cb, {once: true});
+        var delay = this.getOpt('delay', 0);
+        var cb = _ => window.setTimeout(endCb, delay);
+        this.addEndTriggers(e, cb);
+    }
+
+    addEndTriggers(e, cb) {
+        window.addEventListener('keypress', cb, {once: true});
+    }
+
+    removeEndTriggers(e, cb) {
+        window.removeEventListener("keypress", cb, {once: true});
     }
 }
 
-class SvgAnim {
+class StaticImage extends Layer {
     constructor(src, container, next, opts) {
+        super(container, next, opts);
         this.src = src;
-        this.container = container;
-        this.next = next;
-        if (opts === undefined) {
-            opts = {};
-        }
-        if (opts.fade === undefined) {
-            this.fade = opts.fade;
-        }
     }
 
-    show(ready) {
+    createNode() {
+        var i = document.createElement('img');
+        i.src = this.src;
+        return i;
+    }
+}
+
+class Video extends Layer {
+    constructor(src, container, next, opts) {
+        super(container, next, opts)
+        this.src = src;
+    }
+
+    createNode() {
+        var v = document.createElement('video');
+        v.src = this.src;
+        v.autoplay = true;
+        v.loop = super.getOpt('loop', false);
+        v.width = 1920;
+        v.height = 1080;
+        return v;
+    }
+
+    addEndTriggers(v, cb) {
+        super.addEndTriggers(v, cb);
+        v.addEventListener("ended", cb, {once: true});
+    }
+
+    removeEndTriggers(v, cb) {
+        super.removeEndTriggers(v, cb);
+        v.removeEventListener("ended", cb, {once: true});
+    }
+}
+
+class SvgAnim extends Layer {
+    constructor(src, container, next, opts) {
+        super(container, next, opts);
+        this.src = src;
+    }
+
+    createNode() {
         var i = document.createElement('object');
-        var c = this.container;
         i.data = this.src;
-        if (this.fade) {
-            i.classList.add('fadein');
-            c.appendChild(i);
-            i.addEventListener("animationend", function() {
-                i.classList.remove('fadein');
-                ready();
-                }, {once: true});
-        } else {
-            c.appendChild(i);
-            ready();
-        }
-        var fadeout = this.fade;
-        var cb = _ => this.next.show(function () {
-            if (fadeout) {
-                i.classList.add('fadeout');
-                i.addEventListener("animationend", _ => c.removeChild(i));
-            } else {
-                c.removeChild(i);
-            }
-        });
-        window.addEventListener("keypress", cb, {once: true});
+        return i;
     }
 }
 
@@ -168,28 +147,31 @@ function wholeSet() {
     var preCoilLogo = new StaticImage('epcover.png', backdrop, coil);
     var warning = new Video('Warning.ogg', content, preCoilLogo);
     var preWarning = new StaticImage('epcover.png', backdrop, warning);
+    // Vessels
+    // Sonica
+    // Instincts
     var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preWarning);
     var preClarity = new StaticImage('blackout.svg', backdrop, clarity);
     var answer = new Video('Answer.ogg', content, preClarity);
-    var preAnswer = new StaticImage('epcover.png', backdrop, answer, 2466);
+    var preAnswer = new StaticImage('epcover.png', backdrop, answer, {delay: 2466});
     var churn = new Video('Churn.mp4', content, preAnswer);
     var preChurn = new StaticImage('forayslogo.svg', backdrop, churn);
     // Burn
     // Olive
     // NWO
-    var preNwo = new StaticImage('blackout.svg', backdrop, preChurn);
+    var preNwo = new StaticImage('blackout.svg', backdrop, preChurn, {fadein: false});
 
     var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false});
     var evOutro1 = new Video('EV/sundown_early.mp4', backdrop, evOutro2, {fadein: false, fadeout: false});
     var evChorus3 = new Video('EV/sunrise.ogg', content, evOutro1, {fadeout: false});
-    var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, evChorus3, {fade: false});
+    var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, evChorus3, {fadein: false, fadeout: false});
     var evChorus2 = new Video('EV/flickery_sundown.mp4', content, evDaydream);
     var evVerse2 = new Placeholder('Ivan futurescape', backdrop, evChorus2);
     var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2);
     var evVerse1 = new Placeholder('Ivan logo', backdrop, evChorus1);
     var preEv = new Video('EV/rainscenes.ogg', content, evVerse1, {loop: true, fadeout: false});
     
-    var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, preEv);
+    var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, preEv, {fadein: false});
     cultRadio.show(noop);
 }
 
