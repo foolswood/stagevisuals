@@ -161,25 +161,36 @@ function wholeSet() {
     var endstop = new EndStop();
 
     var finalLogo = new StaticImage('forayslogo.svg', backdrop, endstop);
+
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
     var preMexLogo = new StaticImage('forayslogo.svg', backdrop, mexico);
+
     // P&P
     var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, preMexLogo);
     var preCoilLogo = new StaticImage('epcover.png', backdrop, coil);
+
     var warning = new Video('Warning.ogg', content, preCoilLogo);
     var preWarning = new StaticImage('epcover.png', backdrop, warning);
+
     // Vessels
     // Sonica
     // Instincts
+
     var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preWarning);
     var preClarity = new StaticImage('blackout.svg', backdrop, clarity);
+
     var answer = new Video('Answer.ogg', content, preClarity);
     var preAnswer = new StaticImage('epcover.png', backdrop, answer, {delay: 2466});
+
     var churn = new Video('Churn.mp4', content, preAnswer);
     var preChurn = new StaticImage('forayslogo.svg', backdrop, churn);
-    // Burn
-    var olive = new Olive(content, preChurn);
-    // NWO
+
+    var burn = new SvgAnim('Burn/OrbitAnim.svg', content, preChurn);
+    var preBurn = new StaticImage('forayslogo.svg', backdrop, burn);
+
+    var olive = new Olive(content, preBurn);
+
+    var nwo = new Placeholder('NWO', content, olive);
     var preNwo = new StaticImage('blackout.svg', backdrop, olive, {fadein: false});
 
     var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false});
