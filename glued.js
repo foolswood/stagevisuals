@@ -165,8 +165,10 @@ function wholeSet() {
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
     var preMexLogo = new StaticImage('forayslogo.svg', backdrop, mexico);
 
-    // P&P
-    var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, preMexLogo);
+    var pnp = new Video('PnP.mp4', content, preMexLogo, {fadein: false});
+    var prePnp = new StaticImage('forayslogo.svg', backdrop, pnp, {delay: 3947, fadeout: false});
+
+    var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, prePnp);
     var preCoilLogo = new StaticImage('epcover.png', backdrop, coil);
 
     var warning = new Video('Warning.ogg', content, preCoilLogo);
