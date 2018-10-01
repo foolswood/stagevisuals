@@ -176,9 +176,12 @@ function wholeSet() {
 
     // Vessels
     // Sonica
-    // Instincts
+    var instinctsMove2 = new Video('Instincts/moving.mp4', content, preWarning, {fadein: false});
+    var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
+    var instinctsMove = new Video('Instincts/moving.mp4', content, instinctsStill2, {fadein: false});
+    var instinctsStill = new Video('Instincts/stationary.mp4', content, instinctsMove, {fadeout: false});
 
-    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preWarning);
+    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, instinctsStill);
     var preClarity = new StaticImage('blackout.svg', backdrop, clarity);
 
     var answer = new Video('Answer.ogg', content, preClarity);
