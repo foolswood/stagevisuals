@@ -42,7 +42,8 @@ class Layer {
                 e.classList.add('fadeout');
                 e.addEventListener("animationend", _ => c.removeChild(e));
             } else {
-                c.removeChild(e);
+                // Clunky fudge to avoid dropping onto unrendered stuff
+                window.setTimeout(_ => c.removeChild(e), 50);
             }
         });
         var delay = this.getOpt('delay', 0);
