@@ -83,6 +83,7 @@ class Video extends Layer {
         var v = document.createElement('video');
         v.src = this.src;
         v.autoplay = true;
+        v.playbackRate = super.getOpt('speed', 1.0);
         v.loop = super.getOpt('loop', false);
         v.width = 1920;
         v.height = 1080;
