@@ -203,29 +203,31 @@ function wholeSet() {
     var finalLogo = new StaticImage('forayslogo.svg', backdrop, endstop);
 
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
-    var preMexLogo = new StaticImage('forayslogo.svg', backdrop, mexico);
+    var preMexLogo = new StaticImage('EpArt/newmex.jpg', backdrop, mexico);
 
     var pnp = new Video('PnP.mp4', content, preMexLogo, {fadein: false});
     var prePnp = new StaticImage('forayslogo.svg', backdrop, pnp, {delay: 3947, fadeout: false});
 
     var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, prePnp);
-    var preCoilLogo = new StaticImage('epcover.png', backdrop, coil);
+    var preCoilLogo = new StaticImage('EpArt/coil.jpg', backdrop, coil);
 
     var warning = new Video('Warning.ogg', content, preCoilLogo);
-    var preWarning = new StaticImage('epcover.png', backdrop, warning);
+    var preWarning = new StaticImage('EpArt/warning.jpg', backdrop, warning);
 
-    // Vessels
-    // Sonica
-    var instinctsMove2 = new Video('Instincts/moving.mp4', content, preWarning, {fadein: false});
+    var vessels = new StaticImage('SonicaVessels/vessels.png', content, preWarning);
+    var sonica = new StaticImage('SonicaVessels/sonica.png', content, vessels);
+
+    var instinctsMove2 = new Video('Instincts/moving.mp4', content, preWarning, {fadein: false, speed: 1.25});
     var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
     var instinctsMove = new Video('Instincts/moving.mp4', content, instinctsStill2, {fadein: false});
     var instinctsStill = new Video('Instincts/stationary.mp4', content, instinctsMove, {fadeout: false});
+    var preInstincts = new StaticImage('EpArt/instincts.jpg', backdrop, instinctsStill, {fadeout: false});
 
-    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, instinctsStill);
+    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preInstincts);
     var preClarity = new StaticImage('blackout.svg', backdrop, clarity);
 
     var answer = new Video('Answer.ogg', content, preClarity);
-    var preAnswer = new StaticImage('epcover.png', backdrop, answer, {delay: 2466});
+    var preAnswer = new StaticImage('EpArt/answer.jpg', backdrop, answer, {delay: 2466});
 
     var churn = new Video('Churn.mp4', content, preAnswer);
     var preChurn = new StaticImage('forayslogo.svg', backdrop, churn);
@@ -234,20 +236,24 @@ function wholeSet() {
     var preBurn = new StaticImage('forayslogo.svg', backdrop, burn);
 
     var olive = new Olive(content, preBurn);
+    var preOlive = new StaticImage('EpArt/olive.jpg', backdrop, olive, {fadein: false, fadeout: false, delay: 500});
 
-    var nwo = new Placeholder('NWO', content, olive);
+    var nwo = new Placeholder('NWO', content, preOlive);
     var preNwo = new StaticImage('blackout.svg', backdrop, olive, {fadein: false});
 
-    var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false});
-    var evOutro1 = new Video('EV/sundown_early.mp4', backdrop, evOutro2, {fadein: false, fadeout: false});
-    var evChorus3 = new Video('EV/sunrise.ogg', content, evOutro1, {fadeout: false});
+    var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false, speed: 0.5});
+    var evOutro1 = new Video('EV/sundown_early.mp4', backdrop, evOutro2, {fadein: false, fadeout: false, speed: 0.5});
+    var evChorus3 = new Video('EV/sunrise.ogg', content, evOutro1, {fadeout: false, speed: 0.5});
     var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, evChorus3, {fadein: false, fadeout: false});
-    var evChorus2 = new Video('EV/flickery_sundown.mp4', content, evDaydream);
+    var evChorus2 = new Video('EV/flickery_sundown.mp4', content, evDaydream, {speed: 0.5});
     var evVerse2 = new Placeholder('Ivan futurescape', backdrop, evChorus2);
-    var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2);
-    var evVerse1 = new Placeholder('Ivan logo', backdrop, evChorus1);
+    var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2, {speed: 0.5});
+    var evVerse1 = new StaticImage('EV/ivan_frames/20190930_102744_0001.JPG', backdrop, evChorus1);
+    // This has a wierd green bar
     var preEv = new Video('EV/rainscenes.ogg', content, evVerse1, {loop: true, fadeout: false});
     
+    // Doops tat goes here
+
     var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, preEv, {fadein: false});
     cultRadio.show(noop);
 }
