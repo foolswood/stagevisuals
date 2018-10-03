@@ -19,6 +19,10 @@ class Layer {
 
     show(ready) {
         var e = this.createNode();
+        var extraCls = this.getOpt('extraClasses', []);
+        for (var i = 0; i < extraCls.length; i++) {
+            e.classList.add(extraCls[i]);
+        }
         var c = this.container;
         if (this.getOpt('fadein', true)) {
             e.classList.add('fadein');
@@ -198,6 +202,7 @@ function noop() {
 function wholeSet() {
     var backdrop = document.getElementById('backdrop');
     var content = document.getElementById('content');
+    var overlay = document.getElementById('overlay');
     var endstop = new EndStop();
 
     var finalLogo = new StaticImage('epcover.png', backdrop, endstop);
@@ -217,9 +222,9 @@ function wholeSet() {
     var vessels = new StaticImage('SonicaVessels/vessels.png', content, preWarning);
     var sonica = new StaticImage('SonicaVessels/sonica.png', content, vessels);
 
-    var instinctsMove2 = new Video('Instincts/moving.mp4', content, sonica, {fadein: false, speed: 1.25});
+    var instinctsMove2 = new Video('Instincts/moving.mp4', overlay, sonica, {fadein: false, speed: 1.25});
     var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
-    var instinctsMove = new Video('Instincts/moving.mp4', content, instinctsStill2, {fadein: false});
+    var instinctsMove = new Video('Instincts/moving.mp4', overlay, instinctsStill2, {fadein: false});
     var instinctsStill = new Video('Instincts/stationary.mp4', content, instinctsMove, {fadeout: false});
     var preInstincts = new StaticImage('EpArt/instincts.jpg', backdrop, instinctsStill, {fadeout: false});
 
@@ -246,16 +251,27 @@ function wholeSet() {
     var evChorus3 = new Video('EV/sunrise.ogg', content, evOutro1, {fadeout: false, speed: 0.5});
     var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, evChorus3, {fadein: false, fadeout: false});
     var evChorus2 = new Video('EV/flickery_sundown.mp4', content, evDaydream, {speed: 0.5});
-    var evVerse2 = new Placeholder('Ivan futurescape', backdrop, evChorus2);
-    var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2, {speed: 0.5});
-    var evVerse1 = new StaticImage('EV/ivan_frames/20190930_102744_0001.JPG', backdrop, evChorus1);
-    // This has a wierd green bar
-    var preEv = new Video('EV/rainscenes.ogg', content, evVerse1, {loop: true, fadeout: false});
-    
-    // Doops tat goes here
+    var evVerse2 = new StaticImage('EV/corpdesign.png', backdrop, evChorus2);
+    var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2, {speed: 0.5, fadein: false});
+    var evVerse1 = new StaticImage('EV/ivan_frames/20190930_102744_0001.JPG', overlay, evChorus1, {fadein: false});
+    var preEv = new Video('EV/rainscenes.ogg', backdrop, evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
 
-    var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, preEv, {fadein: false});
-    cultRadio.show(noop);
+    var charityCard1 = new Placeholder('charity thing', content, preEv);
+    
+    var doopsEndCard = new StaticImage('support/doops/doopsthing.jpg', backdrop, charityCard1);
+    var doopsVid6 = new Video('support/doops/mush.mp4', content, doopsEndCard, {speed: 0.2});
+    var doopsVid5 = new Video('support/doops/shuttle.mp4', backdrop, doopsVid6);
+    var doopsVid4 = new Video('support/doops/mush.mp4', content, doopsVid5, {speed: 0.3});
+    var doopsVid3 = new Video('support/doops/shuttle.mp4', backdrop, doopsVid4);
+    var doopsVid2 = new Video('support/doops/mush.mp4', content, doopsVid3, {speed: 0.5});
+    var doopsVid1 = new Video('support/doops/shuttle.mp4', backdrop, doopsVid2, {fadein: true});
+    var doopsVid0 = new Video('support/doops/mush.mp4', content, doopsVid1, {speed: 0.7});
+    var preDoops = new StaticImage('support/doops/doopslogo.jpg', backdrop, doopsVid0);
+
+    var charityCard = new Placeholder('charity thing', content, preDoops);
+
+    var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, charityCard);
+    preInstincts.show(noop);
 }
 
 document.onload = wholeSet;
