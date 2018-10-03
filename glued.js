@@ -200,13 +200,13 @@ function wholeSet() {
     var content = document.getElementById('content');
     var endstop = new EndStop();
 
-    var finalLogo = new StaticImage('forayslogo.svg', backdrop, endstop);
+    var finalLogo = new StaticImage('epcover.png', backdrop, endstop);
 
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
     var preMexLogo = new StaticImage('EpArt/newmex.jpg', backdrop, mexico);
 
     var pnp = new Video('PnP.mp4', content, preMexLogo, {fadein: false});
-    var prePnp = new StaticImage('forayslogo.svg', backdrop, pnp, {delay: 3947, fadeout: false});
+    var prePnp = new StaticImage('blackout.svg', backdrop, pnp, {delay: 3947, fadeout: false});
 
     var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, prePnp);
     var preCoilLogo = new StaticImage('EpArt/coil.jpg', backdrop, coil);
@@ -217,7 +217,7 @@ function wholeSet() {
     var vessels = new StaticImage('SonicaVessels/vessels.png', content, preWarning);
     var sonica = new StaticImage('SonicaVessels/sonica.png', content, vessels);
 
-    var instinctsMove2 = new Video('Instincts/moving.mp4', content, preWarning, {fadein: false, speed: 1.25});
+    var instinctsMove2 = new Video('Instincts/moving.mp4', content, sonica, {fadein: false, speed: 1.25});
     var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
     var instinctsMove = new Video('Instincts/moving.mp4', content, instinctsStill2, {fadein: false});
     var instinctsStill = new Video('Instincts/stationary.mp4', content, instinctsMove, {fadeout: false});
@@ -230,16 +230,16 @@ function wholeSet() {
     var preAnswer = new StaticImage('EpArt/answer.jpg', backdrop, answer, {delay: 2466});
 
     var churn = new Video('Churn.mp4', content, preAnswer);
-    var preChurn = new StaticImage('forayslogo.svg', backdrop, churn);
+    var preChurn = new StaticImage('epcover.png', backdrop, churn);
 
     var burn = new SvgAnim('Burn/OrbitAnim.svg', content, preChurn);
-    var preBurn = new StaticImage('forayslogo.svg', backdrop, burn);
+    var preBurn = new StaticImage('epcover.png', backdrop, burn);
 
     var olive = new Olive(content, preBurn);
     var preOlive = new StaticImage('EpArt/olive.jpg', backdrop, olive, {fadein: false, fadeout: false, delay: 500});
 
-    var nwo = new Placeholder('NWO', content, preOlive);
-    var preNwo = new StaticImage('blackout.svg', backdrop, olive, {fadein: false});
+    var nwo = new Video('NWO.mp4', content, preOlive);
+    var preNwo = new StaticImage('blackout.svg', backdrop, nwo, {fadein: false});
 
     var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false, speed: 0.5});
     var evOutro1 = new Video('EV/sundown_early.mp4', backdrop, evOutro2, {fadein: false, fadeout: false, speed: 0.5});
