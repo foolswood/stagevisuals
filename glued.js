@@ -205,7 +205,7 @@ function wholeSet() {
     var overlay = document.getElementById('overlay');
     var endstop = new EndStop();
 
-    var finalLogo = new StaticImage('epcover.png', backdrop, endstop);
+    var finalLogo = new StaticImage('charitycard.svg', backdrop, endstop);
 
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
     var preMexLogo = new StaticImage('EpArt/newmex.jpg', backdrop, mexico);
@@ -219,8 +219,7 @@ function wholeSet() {
     var warning = new Video('Warning.ogg', content, preCoilLogo);
     var preWarning = new StaticImage('EpArt/warning.jpg', backdrop, warning);
 
-    var vessels = new StaticImage('SonicaVessels/vessels.png', content, preWarning);
-    var sonica = new StaticImage('SonicaVessels/sonica.png', content, vessels);
+    var sonica = new Video('sonicasea.ogg', content, preWarning, {loop: true, extraClasses: ['pokedown']});
 
     var instinctsMove2 = new Video('Instincts/moving.mp4', overlay, sonica, {fadein: false, speed: 1.25});
     var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
@@ -256,7 +255,7 @@ function wholeSet() {
     var evVerse1 = new StaticImage('EV/ivan_frames/20190930_102744_0001.JPG', overlay, evChorus1, {fadein: false});
     var preEv = new Video('EV/rainscenes.ogg', backdrop, evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
 
-    var charityCard1 = new Placeholder('charity thing', content, preEv);
+    var charityCard1 = new Placeholder('charitycard.svg', content, preEv);
     
     var doopsEndCard = new StaticImage('support/doops/doopsthing.jpg', backdrop, charityCard1);
     var doopsVid6 = new Video('support/doops/mush.mp4', content, doopsEndCard, {speed: 0.2});
@@ -268,10 +267,12 @@ function wholeSet() {
     var doopsVid0 = new Video('support/doops/mush.mp4', content, doopsVid1, {speed: 0.7});
     var preDoops = new StaticImage('support/doops/doopslogo.jpg', backdrop, doopsVid0);
 
-    var charityCard = new Placeholder('charity thing', content, preDoops);
+    var charityCard = new StaticImage('charitycard.svg', content, preDoops);
 
     var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, charityCard);
-    preInstincts.show(noop);
+
+    var startCard = new StaticImage('charitycard.svg', content, cultRadio);
+    startCard.show(noop);
 }
 
 document.onload = wholeSet;
