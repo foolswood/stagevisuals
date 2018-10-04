@@ -216,7 +216,7 @@ function wholeSet() {
     var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, prePnp);
     var preCoilLogo = new StaticImage('EpArt/coil.jpg', backdrop, coil);
 
-    var warning = new Video('Warning.ogg', content, preCoilLogo);
+    var warning = new Video('Warning.ogg', content, preCoilLogo, {extraClasses: ['pokedown']});
     var preWarning = new StaticImage('EpArt/warning.jpg', backdrop, warning);
 
     var sonica = new Video('sonicasea.ogg', content, preWarning, {loop: true, extraClasses: ['pokedown']});
@@ -255,7 +255,7 @@ function wholeSet() {
     var evVerse1 = new StaticImage('EV/ivan_frames/20190930_102744_0001.JPG', overlay, evChorus1, {fadein: false});
     var preEv = new Video('EV/rainscenes.ogg', backdrop, evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
 
-    var charityCard1 = new Placeholder('charitycard.svg', content, preEv);
+    var charityCard1 = new StaticImage('charitycard.svg', content, preEv);
     
     var doopsEndCard = new StaticImage('support/doops/doopsthing.jpg', backdrop, charityCard1);
     var doopsVid6 = new Video('support/doops/mush.mp4', content, doopsEndCard, {speed: 0.2});
