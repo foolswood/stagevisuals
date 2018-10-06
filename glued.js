@@ -118,56 +118,20 @@ class SvgAnim extends Layer {
     }
 }
 
-class Olive extends Layer {
+class Flipper extends Layer {
+    constructor(sources, container, next, opts) {
+        super(container, next, opts);
+        this.sources = sources;
+    }
+
     createNode() {
         var i = document.createElement('img');
-        var sources = [
-            'Olive/00.jpg',
-            'Olive/37.jpg',
-            'Olive/03.jpg',
-            'Olive/04.jpg',
-            'Olive/01.jpg',
-            'Olive/07.jpg',
-            'Olive/02.jpg',
-            'Olive/08.jpg',
-            'Olive/36.jpg',
-            'Olive/38.jpg',
-            'Olive/10.jpg',
-            'Olive/17.jpg',
-            'Olive/29.jpg',
-            'Olive/15.jpg',
-            'Olive/11.jpg',
-            'Olive/05.jpg',
-            'Olive/22.jpg',
-            'Olive/13.jpg',
-            'Olive/16.jpg',
-            'Olive/09.jpg',
-            'Olive/32.jpg',
-            'Olive/06.jpg',
-            'Olive/18.jpg',
-            'Olive/21.jpg',
-            'Olive/12.jpg',
-            'Olive/14.jpg',
-            'Olive/34.jpg',
-            'Olive/23.jpg',
-            'Olive/27.jpg',
-            'Olive/19.jpg',
-            'Olive/20.jpg',
-            'Olive/35.jpg',
-            'Olive/25.jpg',
-            'Olive/30.jpg',
-            'Olive/26.jpg',
-            'Olive/24.jpg',
-            'Olive/28.jpg',
-            'Olive/31.jpg',
-            'Olive/33.jpg',
-            'Olive/39.jpg',
-        ];
         var counter = 0;
+        var sources = this.sources;
         var nextSource = function() {
             i.src = sources[counter++ % sources.length];
         }
-        i.intervalTimer = window.setInterval(nextSource, 350);
+        i.intervalTimer = window.setInterval(nextSource, this.getOpt('interval', 350));
         return i;
     }
 
@@ -182,22 +146,79 @@ class EndStop {
     }
 }
 
-class Placeholder {
-    constructor(src, container, next) {
-        this.next = next;
-    }
-
-    show(ready) {
-        ready();
-        var cb = _ => this.next.show(function () {
-        });
-        window.addEventListener("keypress", cb, {once: true});
-    }
-}
-
-
 function noop() {
 }
+
+var olive_imgs = [
+    'Olive/00.jpg',
+    'Olive/37.jpg',
+    'Olive/03.jpg',
+    'Olive/04.jpg',
+    'Olive/01.jpg',
+    'Olive/07.jpg',
+    'Olive/02.jpg',
+    'Olive/08.jpg',
+    'Olive/36.jpg',
+    'Olive/38.jpg',
+    'Olive/10.jpg',
+    'Olive/17.jpg',
+    'Olive/29.jpg',
+    'Olive/15.jpg',
+    'Olive/11.jpg',
+    'Olive/05.jpg',
+    'Olive/22.jpg',
+    'Olive/13.jpg',
+    'Olive/16.jpg',
+    'Olive/09.jpg',
+    'Olive/32.jpg',
+    'Olive/06.jpg',
+    'Olive/18.jpg',
+    'Olive/21.jpg',
+    'Olive/12.jpg',
+    'Olive/14.jpg',
+    'Olive/34.jpg',
+    'Olive/23.jpg',
+    'Olive/27.jpg',
+    'Olive/19.jpg',
+    'Olive/20.jpg',
+    'Olive/35.jpg',
+    'Olive/25.jpg',
+    'Olive/30.jpg',
+    'Olive/26.jpg',
+    'Olive/24.jpg',
+    'Olive/28.jpg',
+    'Olive/31.jpg',
+    'Olive/33.jpg',
+    'Olive/39.jpg',
+];
+
+ivan_frames = [
+    'EV/ivan_frames/01.jpg',
+    'EV/ivan_frames/02.jpg',
+    'EV/ivan_frames/03.jpg',
+    'EV/ivan_frames/04.jpg',
+    'EV/ivan_frames/05.jpg',
+    'EV/ivan_frames/06.jpg',
+    'EV/ivan_frames/07.jpg',
+    'EV/ivan_frames/08.jpg',
+    'EV/ivan_frames/09.jpg',
+    'EV/ivan_frames/10.jpg',
+    'EV/ivan_frames/11.jpg',
+    'EV/ivan_frames/12.jpg',
+    'EV/ivan_frames/13.jpg',
+    'EV/ivan_frames/14.jpg',
+    'EV/ivan_frames/15.jpg',
+    'EV/ivan_frames/16.jpg',
+    'EV/ivan_frames/17.jpg',
+    'EV/ivan_frames/18.jpg',
+    'EV/ivan_frames/19.jpg',
+    'EV/ivan_frames/20.jpg',
+    'EV/ivan_frames/21.jpg',
+    'EV/ivan_frames/22.jpg',
+    'EV/ivan_frames/23.jpg',
+    'EV/ivan_frames/24.jpg',
+    'EV/ivan_frames/25.jpg',
+];
 
 function wholeSet() {
     var backdrop = document.getElementById('backdrop');
@@ -239,7 +260,7 @@ function wholeSet() {
     var burn = new SvgAnim('Burn/OrbitAnim.svg', content, preChurn);
     var preBurn = new StaticImage('epcover.png', backdrop, burn);
 
-    var olive = new Olive(content, preBurn);
+    var olive = new Flipper(olive_imgs, content, preBurn);
     var preOlive = new StaticImage('EpArt/olive.jpg', backdrop, olive, {fadein: false, fadeout: false, delay: 500});
 
     var nwo = new Video('NWO.mp4', content, preOlive);
@@ -252,7 +273,7 @@ function wholeSet() {
     var evChorus2 = new Video('EV/flickery_sundown.mp4', content, evDaydream, {speed: 0.5});
     var evVerse2 = new StaticImage('EV/corpdesign.png', backdrop, evChorus2);
     var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2, {speed: 0.5, fadein: false});
-    var evVerse1 = new StaticImage('EV/ivan_frames/20190930_102744_0001.JPG', overlay, evChorus1, {fadein: false});
+    var evVerse1 = new Flipper(ivan_frames, overlay, evChorus1, {fadein: false, interval: 100});
     var preEv = new Video('EV/rainscenes.ogg', backdrop, evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
 
     var charityCard1 = new StaticImage('charitycard.svg', content, preEv);
