@@ -131,6 +131,7 @@ class Flipper extends Layer {
         var nextSource = function() {
             i.src = sources[counter++ % sources.length];
         }
+        nextSource();
         i.intervalTimer = window.setInterval(nextSource, this.getOpt('interval', 350));
         return i;
     }
@@ -220,6 +221,15 @@ ivan_frames = [
     'EV/ivan_frames/25.jpg',
 ];
 
+corpos = [
+    'EV/corpdesign.png',
+    //'EV/insp/0.jpg',
+    'EV/insp/1.jpg',
+    'EV/woody.png',
+    //'EV/insp/2.jpg',
+    'EV/insp/3.jpg',
+];
+
 function wholeSet() {
     var backdrop = document.getElementById('backdrop');
     var content = document.getElementById('content');
@@ -271,7 +281,7 @@ function wholeSet() {
     var evChorus3 = new Video('EV/sunrise.ogg', content, evOutro1, {fadeout: false, speed: 0.5});
     var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, evChorus3, {fadein: false, fadeout: false});
     var evChorus2 = new Video('EV/flickery_sundown.mp4', content, evDaydream, {speed: 0.5});
-    var evVerse2 = new StaticImage('EV/corpdesign.png', backdrop, evChorus2);
+    var evVerse2 = new Flipper(corpos, backdrop, evChorus2, {interval: 5000});
     var evChorus1 = new Video('EV/flickery_sundown.mp4', content, evVerse2, {speed: 0.5, fadein: false});
     var evVerse1 = new Flipper(ivan_frames, overlay, evChorus1, {fadein: false, interval: 100});
     var preEv = new Video('EV/rainscenes.ogg', backdrop, evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
