@@ -236,47 +236,20 @@ function wholeSet() {
     var overlay = document.getElementById('overlay');
     var endstop = new EndStop();
 
-    var finalLogo = new StaticImage('charitycard.svg', backdrop, endstop);
+    var finalLogo = new StaticImage('eventcard.png', backdrop, endstop);
 
     var mexico = new Video('NewMexico.mp4', content, finalLogo);
-    var preMexLogo = new StaticImage('EpArt/newmex.jpg', backdrop, mexico);
+    var preMexLogo = new StaticImage('EpArt/newmex.jpg', overlay, mexico);
 
-    var pnp = new Video('PnP.mp4', content, preMexLogo, {fadein: false});
+    var encoreBlackout = new StaticImage('blackout.svg', backdrop, preMexLogo, {});
+
+    var pnp = new Video('PnP.mp4', content, encoreBlackout, {fadein: false});
     var prePnp = new StaticImage('blackout.svg', backdrop, pnp, {delay: 3947, fadeout: false});
 
-    var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, prePnp);
-    var preCoilLogo = new StaticImage('EpArt/coil.jpg', backdrop, coil);
+    var sonica = new Video('sonicasea.ogg', content, prePnp, {loop: true, extraClasses: ['pokedown']});
+    var preSonica = new StaticImage('epcover.png', backdrop, sonica);
 
-    var warning = new Video('Warning.ogg', content, preCoilLogo, {extraClasses: ['pokedown']});
-    var preWarning = new StaticImage('EpArt/warning.jpg', backdrop, warning);
-
-    var sonica = new Video('sonicasea.ogg', content, preWarning, {loop: true, extraClasses: ['pokedown']});
-
-    var instinctsMove2 = new Video('Instincts/moving.mp4', overlay, sonica, {fadein: false, speed: 1.25});
-    var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
-    var instinctsMove = new Video('Instincts/moving.mp4', overlay, instinctsStill2, {fadein: false});
-    var instinctsStill = new Video('Instincts/stationary.mp4', content, instinctsMove, {fadeout: false});
-    var preInstincts = new StaticImage('EpArt/instincts.jpg', backdrop, instinctsStill, {fadeout: false});
-
-    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preInstincts);
-    var preClarity = new StaticImage('blackout.svg', backdrop, clarity);
-
-    var answer = new Video('Answer.ogg', content, preClarity);
-    var preAnswer = new StaticImage('EpArt/answer.jpg', backdrop, answer, {delay: 2466});
-
-    var churn = new Video('Churn.mp4', content, preAnswer);
-    var preChurn = new StaticImage('epcover.png', backdrop, churn);
-
-    var burn = new SvgAnim('Burn/OrbitAnim.svg', content, preChurn);
-    var preBurn = new StaticImage('epcover.png', backdrop, burn);
-
-    var olive = new Flipper(olive_imgs, content, preBurn);
-    var preOlive = new StaticImage('EpArt/olive.jpg', backdrop, olive, {fadein: false, fadeout: false, delay: 500});
-
-    var nwo = new Video('NWO.mp4', content, preOlive);
-    var preNwo = new StaticImage('blackout.svg', backdrop, nwo, {fadein: false});
-
-    var evOutro2 = new Video('EV/sundown_late.mp4', content, preNwo, {fadein: false, fadeout: false, speed: 0.5});
+    var evOutro2 = new Video('EV/sundown_late.mp4', content, preSonica, {fadein: false, fadeout: false, speed: 0.5});
     var evOutro1 = new Video('EV/sundown_early.mp4', backdrop, evOutro2, {fadein: false, fadeout: false, speed: 0.5});
     var evChorus3 = new Video('EV/sunrise.ogg', content, evOutro1, {fadeout: false, speed: 0.5});
     var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', backdrop, evChorus3, {fadein: false, fadeout: false});
@@ -286,23 +259,38 @@ function wholeSet() {
     var evVerse1 = new Flipper(ivan_frames, overlay, evChorus1, {fadein: false, interval: 100});
     var preEv = new Video('EV/rainscenes.ogg', backdrop, evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
 
-    var charityCard1 = new StaticImage('charitycard.svg', content, preEv);
+    var omniSun = new Video('Omniscient/sunslice.webm', content, preEv, {fadein: false});
+    var omnisMeiosis = new Video('Omniscient/meiosis.mp4', overlay, omniSun, {fadein: false, fadeout: false});
+    var omnisEarth = new Video('Omniscient/earthslice.mp4', content, omnisMeiosis, {fadeout: false});
+    var preOmnis = new StaticImage('cjeff.png', backdrop, omnisEarth);
+
+    var instinctsMove2 = new Video('Instincts/moving.mp4', overlay, preOmnis, {fadein: false, speed: 1.25});
+    var instinctsStill2 = new Video('Instincts/stationary.mp4', content, instinctsMove2, {fadein: false});
+    var instinctsMove = new Video('Instincts/moving.mp4', overlay, instinctsStill2, {fadein: false});
+    var instinctsStill = new Video('Instincts/stationary.mp4', content, instinctsMove, {fadeout: false});
+    var preInstincts = new StaticImage('EpArt/instincts.jpg', backdrop, instinctsStill, {fadeout: false});
+
+    var coil = new StaticImage('Coil/AnimAtomThingy.svg', content, preInstincts);
+    var preCoilLogo = new StaticImage('EpArt/coil.jpg', backdrop, coil);
+
+    var instrumental = new StaticImage('epcover.png', overlay, preCoilLogo);
+
+    var noFeathers = new StaticImage('nofeathers.png', content, instrumental);
+    var alexSmith = new StaticImage('blackout.svg', backdrop, noFeathers);
+
+    var answer = new Video('Answer.ogg', content, alexSmith);
+    var preAnswer = new StaticImage('EpArt/answer.jpg', backdrop, answer, {delay: 2466});
+
+    var crossing = new StaticImage('discontinuum_drifter.jpg', content, preAnswer);
+
+    var opinionation = new SvgAnim('Opinionation/opinionation_moving.svg', backdrop, crossing);
+
+    var churn = new Video('Churn.mp4', content, opinionation);
+    var preChurn = new StaticImage('epcover.png', backdrop, churn);
+
+    var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preChurn);
     
-    var doopsEndCard = new StaticImage('support/doops/doopsthing.jpg', backdrop, charityCard1);
-    var doopsVid6 = new Video('support/doops/mush.mp4', content, doopsEndCard, {speed: 0.2});
-    var doopsVid5 = new Video('support/doops/shuttle.mp4', backdrop, doopsVid6);
-    var doopsVid4 = new Video('support/doops/mush.mp4', content, doopsVid5, {speed: 0.3});
-    var doopsVid3 = new Video('support/doops/shuttle.mp4', backdrop, doopsVid4);
-    var doopsVid2 = new Video('support/doops/mush.mp4', content, doopsVid3, {speed: 0.5});
-    var doopsVid1 = new Video('support/doops/shuttle.mp4', backdrop, doopsVid2, {fadein: true});
-    var doopsVid0 = new Video('support/doops/mush.mp4', content, doopsVid1, {speed: 0.7});
-    var preDoops = new StaticImage('support/doops/doopslogo.jpg', backdrop, doopsVid0);
-
-    var charityCard = new StaticImage('charitycard.svg', content, preDoops);
-
-    var cultRadio = new StaticImage('support/cultradio.jpg', backdrop, charityCard);
-
-    var startCard = new StaticImage('charitycard.svg', content, cultRadio);
+    var startCard = new StaticImage('eventcard.png', backdrop, clarity);
     startCard.show(noop);
 }
 
