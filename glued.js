@@ -221,6 +221,49 @@ ivan_frames = [
     'EV/ivan_frames/25.jpg',
 ];
 
+old_not_up_imgs = [
+    'OldNotUp/books_00.jpg',
+    'OldNotUp/books_01.jpg',
+    'OldNotUp/books_02.jpg',
+    'OldNotUp/books_03.jpg',
+    'OldNotUp/books_04.jpg',
+    'OldNotUp/books_05.jpg',
+    'OldNotUp/books_06.jpg',
+    'OldNotUp/books_07.jpg',
+    'OldNotUp/books_08.jpg',
+    'OldNotUp/books_09.jpg',
+    'OldNotUp/bwh_00.jpg',
+    'OldNotUp/bwh_01.jpg',
+    'OldNotUp/bwh_02.jpg',
+    'OldNotUp/amp_0.jpg',
+    'OldNotUp/amp_1.jpg',
+    'OldNotUp/amp_2.jpg',
+    'OldNotUp/car_0.jpg',
+    'OldNotUp/car_1.jpg',
+    'OldNotUp/car_2.jpg',
+    'OldNotUp/car_3.jpg',
+    'OldNotUp/drums_0.jpg',
+    'OldNotUp/drums_1.jpg',
+    'OldNotUp/phone_0.jpg',
+    'OldNotUp/phone_1.jpg',
+    'OldNotUp/phone_2.jpg',
+    'OldNotUp/strat_0.jpg',
+    'OldNotUp/strat_1.jpg',
+    'OldNotUp/twh_00.jpg',
+    'OldNotUp/twh_01.jpg',
+    'OldNotUp/twh_02.jpg',
+    'OldNotUp/twh_03.jpg',
+    'OldNotUp/tele_0.jpg',
+    'OldNotUp/tele_1.jpg',
+    'OldNotUp/triple_0.jpg',
+    'OldNotUp/triple_1.jpg',
+    'OldNotUp/wh_00.jpg',
+    'OldNotUp/wh_01.jpg',
+    'OldNotUp/wh_02.jpg',
+    'OldNotUp/wh_03.jpg',
+    'OldNotUp/wh_04.jpg'
+];
+
 corpos = [
     'EV/corpdesign.png',
     //'EV/insp/0.jpg',
@@ -290,7 +333,8 @@ function wholeSet() {
 
     var clarity = new SvgAnim('Clarity/HillsAnim.svg', content, preChurn);
     
-    var startCard = new StaticImage('eventcard.png', backdrop, clarity);
+    var oldNotUp = new Flipper(old_not_up_imgs, content, clarity, {interval: 3000});
+    var startCard = new StaticImage('eventcard.png', backdrop, oldNotUp);
     startCard.show(noop);
 }
 
