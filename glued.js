@@ -302,18 +302,18 @@ corpos = [
     var instinctsStill = new Video('Instincts/stationary.mp4', "fg", instinctsMove, {fadeout: false});
     var preInstincts = new StaticImage('EpArt/instincts.jpg', "bg", instinctsStill, {fadeout: false});
 
-    var pnp = new Video('PnP.mp4', "fg", encoreBlackout, {fadein: false});
-    var prePnp = new StaticImage('blackout.svg', "bg", pnp, {delay: 3947, fadeout: false});
-
-    var mexico = new Video('NewMexico.mp4', "fg", finalLogo);
-    var preMexLogo = new StaticImage('EpArt/newmex.jpg', "fg", mexico);
-
     var encoreBlackout = new StaticImage('blackout.svg', "bg", preMexLogo, {});
- */
-function wholeSet() {
-    var endstop = new EndStop();
 
-    var finalLogo = new StaticImage('epcover.png', "bg", endstop);
+    var opinionation = new SvgAnim('Opinionation/opinionation_moving.svg', "bg", preOldNotUp);
+
+    var churn = new Video('Churn.mp4', "fg", preInstrumental);
+    var preChurn = new StaticImage('epcover.png', "bg", churn);
+
+    var sonica = new Video('sonicasea.ogg', "fg", preChurn, {loop: true, extraClasses: ['pokedown']});
+    var preSonica = new StaticImage('epcover.png', "bg", sonica);
+
+    var coil = new StaticImage('Coil/AnimAtomThingy.svg', "fg", preClarity);
+    var preCoilLogo = new StaticImage('EpArt/coil.jpg', "bg", coil);
 
     var evOutro2 = new Video('EV/sundown_late.mp4', "fg", finalLogo, {fadein: false, fadeout: false, speed: 0.5});
     var evOutro1 = new Video('EV/sundown_early.mp4', "bg", evOutro2, {fadein: false, fadeout: false, speed: 0.5});
@@ -324,28 +324,32 @@ function wholeSet() {
     var evChorus1 = new Video('EV/flickery_sundown.mp4', "fg", evVerse2, {speed: 0.5, fadein: false});
     var evVerse1 = new Flipper(ivan_frames, "fg", evChorus1, {fadein: false, interval: 100});
     var preEv = new Video('EV/rainscenes.ogg', "bg", evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
+ */
+function wholeSet() {
+    var endstop = new EndStop();
 
-    var clarity = new SvgAnim('Clarity/HillsAnim.svg', "fg", preEv);
+    var finalLogo = new StaticImage('epcover.png', "bg", endstop);
+
+    var mexico = new Video('NewMexico.mp4', "fg", finalLogo);
+    var preMexLogo = new StaticImage('EpArt/newmex.jpg', "fg", mexico);
+
+    // Executioner goes here
+
+    var pnp = new Video('PnP.mp4', "fg", preMexLogo, {fadein: false});
+    var prePnp = new StaticImage('blackout.svg', "bg", pnp, {delay: 3947, fadeout: false});
+
+    var clarity = new SvgAnim('Clarity/HillsAnim.svg', "fg", prePnp);
     var preClarity = new StaticImage('epcover.png', "bg", clarity);
 
-    var coil = new StaticImage('Coil/AnimAtomThingy.svg', "fg", preClarity);
-    var preCoilLogo = new StaticImage('EpArt/coil.jpg', "bg", coil);
+    var warning = new Video('Warning.ogg', "fg", preClarity, {extraClasses: ['pokedown']});
+    var preWarning = new StaticImage('EpArt/warning.jpg', "bg", warning);
 
-    var instrumental = new Flipper(olive_imgs, "fg", preCoilLogo, {interval: 140});
-    var preInstrumental = new StaticImage('forayslogo_white.svg', "bg", instrumental);
+    var oldNotUp = new Flipper(old_not_up_imgs, "fg", preWarning, {interval: 3000});
+    var preOldNotUp = new StaticImage('epcover.png', "bg", oldNotUp);
 
-    var churn = new Video('Churn.mp4', "fg", preInstrumental);
-    var preChurn = new StaticImage('epcover.png', "bg", churn);
+    var instrumental = new Flipper(olive_imgs, "fg", preOldNotUp, {interval: 150});
 
-    var sonica = new Video('sonicasea.ogg', "fg", preChurn, {loop: true, extraClasses: ['pokedown']});
-    var preSonica = new StaticImage('epcover.png', "bg", sonica);
-    
-    var oldNotUp = new Flipper(old_not_up_imgs, "fg", preSonica, {interval: 3000});
-    var preOldNotUp = new StaticImage('forayslogo_white.svg', "bg", oldNotUp);
-
-    var opinionation = new SvgAnim('Opinionation/opinionation_moving.svg', "bg", preOldNotUp);
-
-    var startCard = new StaticImage('forayslogo_white.svg', "bg", opinionation);
+    var startCard = new StaticImage('forayslogo_white.svg', "bg", instrumental);
     startCard.show(noop);
     window.addEventListener('keydown', e => {
         if (e.keyCode != 122) {
