@@ -61,16 +61,23 @@ class Layer {
             }
         });
         var delay = this.getOpt('delay', 0);
-        var cb = _ => window.setTimeout(endCb, delay);
-        this.addEndTriggers(e, cb);
+        var eta = evt => this.addEndTriggers(e, cb);
+        var cb = evt => {
+            if (evt.keyCode != 122) {
+                window.setTimeout(endCb, delay);
+            } else {
+                eta(e, cb);
+            }
+        };
+        window.setTimeout(eta, 1000);
     }
 
     addEndTriggers(e, cb) {
-        window.addEventListener('keypress', cb, {once: true});
+        window.addEventListener('keydown', cb, {once: true});
     }
 
     removeEndTriggers(e, cb) {
-        window.removeEventListener("keypress", cb, {once: true});
+        window.removeEventListener('keydown', cb, {once: true});
     }
 }
 
@@ -283,32 +290,7 @@ corpos = [
     'EV/insp/3.jpg',
 ];
 
-function wholeSet() {
-    var endstop = new EndStop();
-
-    var finalLogo = new StaticImage('eventcard.png', "bg", endstop);
-
-    var mexico = new Video('NewMexico.mp4', "fg", finalLogo);
-    var preMexLogo = new StaticImage('EpArt/newmex.jpg', "fg", mexico);
-
-    var encoreBlackout = new StaticImage('blackout.svg', "bg", preMexLogo, {});
-
-    var pnp = new Video('PnP.mp4', "fg", encoreBlackout, {fadein: false});
-    var prePnp = new StaticImage('blackout.svg', "bg", pnp, {delay: 3947, fadeout: false});
-
-    var sonica = new Video('sonicasea.ogg', "fg", prePnp, {loop: true, extraClasses: ['pokedown']});
-    var preSonica = new StaticImage('epcover.png', "bg", sonica);
-
-    var evOutro2 = new Video('EV/sundown_late.mp4', "fg", preSonica, {fadein: false, fadeout: false, speed: 0.5});
-    var evOutro1 = new Video('EV/sundown_early.mp4', "bg", evOutro2, {fadein: false, fadeout: false, speed: 0.5});
-    var evChorus3 = new Video('EV/sunrise.ogg', "fg", evOutro1, {fadeout: false, speed: 0.5});
-    var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', "bg", evChorus3, {fadein: false, fadeout: false});
-    var evChorus2 = new Video('EV/flickery_sundown.mp4', "fg", evDaydream, {speed: 0.5});
-    var evVerse2 = new Flipper(corpos, "bg", evChorus2, {interval: 5000});
-    var evChorus1 = new Video('EV/flickery_sundown.mp4', "fg", evVerse2, {speed: 0.5, fadein: false});
-    var evVerse1 = new Flipper(ivan_frames, "fg", evChorus1, {fadein: false, interval: 100});
-    var preEv = new Video('EV/rainscenes.ogg', "bg", evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
-
+/*
     var omniSun = new Video('Omniscient/sunslice.webm', "fg", preEv, {fadein: false});
     var omnisMeiosis = new Video('Omniscient/meiosis.mp4', "fg", omniSun, {fadein: false, fadeout: false});
     var omnisEarth = new Video('Omniscient/earthslice.mp4', "fg", omnisMeiosis, {fadeout: false});
@@ -320,29 +302,56 @@ function wholeSet() {
     var instinctsStill = new Video('Instincts/stationary.mp4', "fg", instinctsMove, {fadeout: false});
     var preInstincts = new StaticImage('EpArt/instincts.jpg', "bg", instinctsStill, {fadeout: false});
 
-    var coil = new StaticImage('Coil/AnimAtomThingy.svg', "fg", preInstincts);
+    var pnp = new Video('PnP.mp4', "fg", encoreBlackout, {fadein: false});
+    var prePnp = new StaticImage('blackout.svg', "bg", pnp, {delay: 3947, fadeout: false});
+
+    var mexico = new Video('NewMexico.mp4', "fg", finalLogo);
+    var preMexLogo = new StaticImage('EpArt/newmex.jpg', "fg", mexico);
+
+    var encoreBlackout = new StaticImage('blackout.svg', "bg", preMexLogo, {});
+ */
+function wholeSet() {
+    var endstop = new EndStop();
+
+    var finalLogo = new StaticImage('epcover.png', "bg", endstop);
+
+    var evOutro2 = new Video('EV/sundown_late.mp4', "fg", finalLogo, {fadein: false, fadeout: false, speed: 0.5});
+    var evOutro1 = new Video('EV/sundown_early.mp4', "bg", evOutro2, {fadein: false, fadeout: false, speed: 0.5});
+    var evChorus3 = new Video('EV/sunrise.ogg', "fg", evOutro1, {fadeout: false, speed: 0.5});
+    var evDaydream = new SvgAnim('EV/DDRTickerAnim.svg', "bg", evChorus3, {fadein: false, fadeout: false});
+    var evChorus2 = new Video('EV/flickery_sundown.mp4', "fg", evDaydream, {speed: 0.5});
+    var evVerse2 = new Flipper(corpos, "bg", evChorus2, {interval: 5000});
+    var evChorus1 = new Video('EV/flickery_sundown.mp4', "fg", evVerse2, {speed: 0.5, fadein: false});
+    var evVerse1 = new Flipper(ivan_frames, "fg", evChorus1, {fadein: false, interval: 100});
+    var preEv = new Video('EV/rainscenes.ogg', "bg", evVerse1, {loop: true, fadeout: false, extraClasses: ['pokedown']});
+
+    var clarity = new SvgAnim('Clarity/HillsAnim.svg', "fg", preEv);
+    var preClarity = new StaticImage('epcover.png', "bg", clarity);
+
+    var coil = new StaticImage('Coil/AnimAtomThingy.svg', "fg", preClarity);
     var preCoilLogo = new StaticImage('EpArt/coil.jpg', "bg", coil);
 
-    var instrumental = new StaticImage('epcover.png', "fg", preCoilLogo);
+    var instrumental = new Flipper(olive_imgs, "fg", preCoilLogo, {interval: 140});
+    var preInstrumental = new StaticImage('forayslogo_white.svg', "bg", instrumental);
 
-    var noFeathers = new StaticImage('nofeathers.png', "fg", instrumental);
-    var alexSmith = new StaticImage('blackout.svg', "bg", noFeathers);
-
-    var answer = new Video('Answer.ogg', "fg", alexSmith);
-    var preAnswer = new StaticImage('EpArt/answer.jpg', "bg", answer, {delay: 2466});
-
-    var crossing = new StaticImage('discontinuum_drifter.jpg', "fg", preAnswer);
-
-    var opinionation = new SvgAnim('Opinionation/opinionation_moving.svg', "bg", crossing);
-
-    var churn = new Video('Churn.mp4', "fg", opinionation);
+    var churn = new Video('Churn.mp4', "fg", preInstrumental);
     var preChurn = new StaticImage('epcover.png', "bg", churn);
 
-    var clarity = new SvgAnim('Clarity/HillsAnim.svg', "fg", preChurn);
+    var sonica = new Video('sonicasea.ogg', "fg", preChurn, {loop: true, extraClasses: ['pokedown']});
+    var preSonica = new StaticImage('epcover.png', "bg", sonica);
     
-    var oldNotUp = new Flipper(old_not_up_imgs, "fg", clarity, {interval: 3000});
-    var startCard = new StaticImage('eventcard.png', "bg", oldNotUp);
+    var oldNotUp = new Flipper(old_not_up_imgs, "fg", preSonica, {interval: 3000});
+    var preOldNotUp = new StaticImage('forayslogo_white.svg', "bg", oldNotUp);
+
+    var opinionation = new SvgAnim('Opinionation/opinionation_moving.svg', "bg", preOldNotUp);
+
+    var startCard = new StaticImage('forayslogo_white.svg', "bg", opinionation);
     startCard.show(noop);
+    window.addEventListener('keydown', e => {
+        if (e.keyCode != 122) {
+            e.preventDefault()
+        }
+    });
 }
 
 document.onload = wholeSet;
